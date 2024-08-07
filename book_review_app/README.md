@@ -18,3 +18,57 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+
+
+---
+
+Te ayudaré a ejecutar la aplicación. Vamos a hacerlo paso a paso:
+
+Primero, asegúrate de que estás en el directorio raíz de tu proyecto:
+
+```bash
+cd ~/Documents/Software\ Architecture/Tarea1_Software_Arquitecture/book_review_app
+```
+
+Ahora, vamos a asegurarnos de que todas las dependencias están instaladas:
+
+```bash
+mix deps.get
+```
+
+Si has hecho cambios en la base de datos o en las migraciones, es buena idea reiniciar desde cero:
+
+```bash
+mix ecto.drop
+mix ecto.create
+mix ecto.migrate
+```
+
+Ahora, vamos a cargar los datos de prueba:
+
+```bash
+mix run priv/repo/seeds.exs
+```
+
+Si todo ha ido bien hasta ahora, podemos iniciar el servidor de Phoenix:
+
+```bash
+mix phx.server
+```
+
+O si prefieres iniciarlo en modo interactivo:
+
+```bash
+iex -S mix phx.server
+```
+
+Una vez que el servidor esté en funcionamiento, deberías ver un mensaje que indica en qué puerto está corriendo la aplicación. Por defecto, suele ser el puerto 4000.
+
+Abre tu navegador web y ve a http://localhost:4000. Deberías ver la página de inicio de tu aplicación.
+
+Algunos consejos adicionales:
+
+- Si estás utilizando una base de datos como PostgreSQL, asegúrate de que está en funcionamiento.
+- Verifica que la configuración de la base de datos en config/dev.exs sea correcta.
+- Si tienes problemas con las dependencias, puedes intentar eliminar la carpeta _build y el archivo mix.lock, y luego ejecutar mix deps.get nuevamente.
