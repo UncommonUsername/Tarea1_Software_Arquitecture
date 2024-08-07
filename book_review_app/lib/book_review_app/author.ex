@@ -7,6 +7,8 @@ defmodule BookReviewApp.Author do
     field :country, :string
     field :dob, :date
     field :name, :string
+    
+    has_many :books, BookReviewApp.Book
 
     timestamps(type: :utc_datetime)
   end
