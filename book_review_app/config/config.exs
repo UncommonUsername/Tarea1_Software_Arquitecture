@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+import_config ".env.exs"
+
 config :book_review_app,
   ecto_repos: [BookReviewApp.Repo],
   generators: [timestamp_type: :utc_datetime]

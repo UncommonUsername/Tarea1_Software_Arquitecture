@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :book_review_app, BookReviewApp.Repo,
-  username: System.get_env("DB_USERNAME", "postgres"),
-  password: System.get_env("DB_PASSWORD", "holamundo"),
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
   hostname: "localhost",
   database: "book_review_app_dev",
   stacktrace: true,
