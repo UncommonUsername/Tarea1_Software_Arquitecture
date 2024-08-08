@@ -5,7 +5,8 @@ defmodule BookReviewApp.Sale do
   schema "sales" do
     field :sales, :integer
     field :year, :integer
-    field :book_id, :id
+    
+    belongs_to :book, BookReviewApp.Book
 
     timestamps(type: :utc_datetime)
   end
@@ -13,7 +14,8 @@ defmodule BookReviewApp.Sale do
   @doc false
   def changeset(sale, attrs) do
     sale
-    |> cast(attrs, [:year, :sales])
-    |> validate_required([:year, :sales])
+    |> cast(attrs, [:year, :sales, :book_id])
+    |> validate_required([:year, :sales, :book_id])
+    |> foreign_key_constraint(:book_id)
   end
 end

@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Total Sales</th>
+      <th>Author</th>
+      <th>Author's Total Sales</th>
+      <th>Top 5 in Year?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for book <- @books do %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.book_sales %></td>
+        <td><%= book.author_name %></td>
+        <td><%= book.author_sales %></td>
+        <td><%= if book.top_5_in_year, do: "Yes", else: "No" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
