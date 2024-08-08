@@ -7,19 +7,19 @@
   </:actions>
 </.header>
 
-<.table id="authors" rows={@authors} row_click={&JS.navigate(~p"/authors/#{&1}")}>
-  <:col :let={author} label="Name"><%= author.name %></:col>
-  <:col :let={author} label="Dob"><%= author.dob %></:col>
-  <:col :let={author} label="Country"><%= author.country %></:col>
-  <:col :let={author} label="Bio"><%= author.bio %></:col>
+<.table id="authors" rows={@authors_stats}>
+  <:col :let={author} label="Name"><%= author.author %></:col>
+  <:col :let={author} label="Books Count"><%= author.books_count %></:col>
+  <:col :let={author} label="Average Score"><%= author.avg_score %></:col>
+  <:col :let={author} label="Total Sales"><%= author.total_sales %></:col>
   <:action :let={author}>
     <div class="sr-only">
-      <.link navigate={~p"/authors/#{author}"}>Show</.link>
+      <.link navigate={~p"/authors/#{author.author}"}>Show</.link>
     </div>
-    <.link navigate={~p"/authors/#{author}/edit"}>Edit</.link>
+    <.link navigate={~p"/authors/#{author.author}/edit"}>Edit</.link>
   </:action>
   <:action :let={author}>
-    <.link href={~p"/authors/#{author}"} method="delete" data-confirm="Are you sure?">
+    <.link href={~p"/authors/#{author.author}"} method="delete" data-confirm="Are you sure?">
       Delete
     </.link>
   </:action>
