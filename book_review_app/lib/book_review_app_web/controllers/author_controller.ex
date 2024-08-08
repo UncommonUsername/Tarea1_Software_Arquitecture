@@ -3,10 +3,33 @@ defmodule BookReviewAppWeb.AuthorController do
 
   alias BookReviewApp.Library
   alias BookReviewApp.Library.Author
+  alias BookReviewApp.Book
 
-  def index(conn, _params) do
-    authors = Library.list_authors()
-    render(conn, :index, authors: authors)
+  def index(conn, params) do
+    valid_order_bys = ["asc", "asc_nulls_last", "asc_nulls_first", "desc", "desc_nulls_last", "desc_nulls_first"]
+    valid_sort_bys = ["name", "books_count", "avg_score", "total_sales"]
+
+    order_by = if params["order_by"] in valid_order_bys do
+      case params["order_by"] do
+        "asc" -> :asc
+        "asc_nulls_last" -> :asc_nulls_last
+        "asc_nulls_first" -> :asc_nulls_first
+        "desc" -> :desc
+        "desc_nulls_last" -> :desc_nulls_last
+        "desc_nulls_first" -> :desc_nulls_first
+      end
+    else
+      :asc  # Default value
+    end
+
+    sort_by = if params["sort_by"] in valid_sort_bys do
+      params["sort_by"]
+    else
+      "name"  # Default value
+    end
+
+    authors_stats = Library.list_authors_with_stats(%{"sort_by" => sort_by, "order_by" => order_by})
+    render(conn, "index.html", authors_stats: authors_stats)
   end
 
   def new(conn, _params) do

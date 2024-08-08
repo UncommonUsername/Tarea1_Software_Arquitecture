@@ -5,8 +5,36 @@ defmodule BookReviewApp.Library do
 
   import Ecto.Query, warn: false
   alias BookReviewApp.Repo
+  alias BookReviewApp.Library.{Author, Book, Review}
 
-  alias BookReviewApp.Library.Author
+  def list_authors_with_stats(params \\ %{}) do
+    valid_sort_bys = [:name, :books_count, :avg_score, :total_sales]
+    sort_by = 
+      case Map.get(params, "sort_by", :name) do
+        "name" -> :name
+        "books_count" -> :books_count
+        "avg_score" -> :avg_score
+        "total_sales" -> :total_sales
+        _ -> :name  # Default value
+      end
+
+    order_by = Map.get(params, "order_by", :asc)
+
+    query = from a in Author,
+      join: b in Book, on: b.author_id == a.id,
+      left_join: r in Review, on: r.book_id == b.id,
+      group_by: a.id,
+      select: %{
+        author: a.name,
+        books_count: count(b.id),
+        avg_score: avg(r.score),
+        total_sales: sum(b.sales)
+      },
+      order_by: [{^order_by, ^sort_by}]
+
+    Repo.all(query)
+  end
+
 
   @doc """
   Returns the list of authors.
