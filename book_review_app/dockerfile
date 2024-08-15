@@ -1,0 +1,29 @@
+# Usa una imagen base de Elixir
+FROM elixir:1.14
+
+RUN apt-get update && apt-get install -y inotify-tools
+
+# Instala hex y rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+# Establece el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos de proyecto
+COPY . .
+
+
+
+
+# Instala las dependencias
+RUN mix deps.get
+
+# Compila el proyecto
+RUN mix compile
+
+# Expone el puerto 4000
+EXPOSE 4000
+
+# Comando para ejecutar la aplicación
+CMD ["mix", "phx.server"]
