@@ -9,7 +9,6 @@ services:
       - db
     environment:
       - DATABASE_URL=ecto://postgres:postgres@db/book_review_app_dev
-      - SECRET_KEY_BASE=your_secret_key_base  # Asegúrate de cambiar esto por una clave segura
     volumes:
       - .:/app:delegated
     command: >
