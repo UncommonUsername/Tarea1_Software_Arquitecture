@@ -22,8 +22,8 @@ services:
   db:
     image: postgres:13
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=holamundo
+      - POSTGRES_USER=your_user
+      - POSTGRES_PASSWORD=your_password
       - POSTGRES_DB=book_review_app_dev
     volumes:
       - postgres_data:/var/lib/postgresql/data
