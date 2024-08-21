@@ -84,3 +84,16 @@ System.put_env("DB_USERNAME", "myusername")
 System.put_env("DB_PASSWORD", "mypassword")
 ```
 > Reemplazar myusername y mypassword con el nombre de usuario y contraseña de postgres.
+
+
+
+## Docker
+
+y aqui en [book_review_app/docker-compose.yml](book_review_app/docker-compose.yml) en la linea 25 y 26 remplazar tambien por tus datos de postgresql
+
+Y para correr la aplicacion con docker solo se debe correr el siguiente comando en la carpeta book_review_app
+
+```bash
+docker-compose build
+docker-compose up
+```
