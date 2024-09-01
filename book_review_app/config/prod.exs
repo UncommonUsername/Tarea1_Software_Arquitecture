@@ -7,6 +7,10 @@ import Config
 # before starting your production server.
 config :book_review_app, BookReviewAppWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: 4000],
+  url: [host: "app.localhost", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true
 
 # Configures Swoosh API Client
 config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: BookReviewApp.Finch
