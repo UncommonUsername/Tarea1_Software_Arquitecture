@@ -93,7 +93,29 @@ y aqui en [book_review_app/docker-compose.yml](book_review_app/docker-compose.ym
 
 Y para correr la aplicacion con docker solo se debe correr el siguiente comando en la carpeta book_review_app
 
+### Ejecutar Aplicación + Base de datos:
 ```bash
-docker-compose build
-docker-compose up
+docker-compose -f docker-compose.app-db.yml up --build
 ```
+
+### Aplicación + Base de datos + Caché
+```bash
+docker-compose -f docker-compose.app-db-cache.yml up --build
+``` 
+
+
+### Aplicación + Base de datos + Motor de búsqueda
+```bash
+docker-compose -f docker-compose.app-db-search.yml up --build
+```
+
+### Ejecutar Aplicación + Base de datos + Proxy inverso:
+```bash
+docker-compose -f docker-compose.app-db-proxy.yml up --build
+```
+
+### Aplicación + Base de datos + Proxy inverso + Caché + Motor de búsqueda
+```bash
+docker-compose -f docker-compose.app-db-proxy-cache-search.yml up --build
+```
+
