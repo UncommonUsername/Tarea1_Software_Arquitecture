@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=ecto://postgres:postgres@db/book_review_app_dev
+    volumes:
+      - .:/app:delegated
+    command: >
+      sh -c "
+        mix ecto.create &&
+        mix ecto.migrate &&
+        mix run priv/repo/seeds.exs &&
+        mix phx.server
+      "
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=your_user
+      - POSTGRES_PASSWORD=your_password
+      - POSTGRES_DB=book_review_app_dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: 
+
