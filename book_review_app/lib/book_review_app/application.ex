@@ -17,7 +17,8 @@ defmodule BookReviewApp.Application do
       # Start a worker by calling: BookReviewApp.Worker.start_link(arg)
       # {BookReviewApp.Worker, arg},
       # Start to serve requests, typically the last entry
-      BookReviewAppWeb.Endpoint
+      BookReviewAppWeb.Endpoint,
+      {Cachex, name: :my_cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

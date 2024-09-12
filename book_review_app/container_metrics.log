@@ -1,0 +1,4 @@
+NAME                      CPU %     MEM USAGE / LIMIT    NET I/O           PIDS
+book_review_app-web-1     1.48%     173.7MiB / 13.5GiB   1.66MB / 4.18MB   82
+book_review_app-db-1      0.04%     42.52MiB / 13.5GiB   4.16MB / 1.36MB   17
+book_review_app-redis-1   0.59%     8.441MiB / 13.5GiB   20kB / 0B         7
