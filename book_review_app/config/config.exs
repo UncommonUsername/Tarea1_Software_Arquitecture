@@ -66,3 +66,8 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+
+config :book_review_app, BookReviewApp.Cache,
+  backend: :redis,
+  redis_url: System.get_env("REDIS_URL") || "redis://localhost:6379/0"

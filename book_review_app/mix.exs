@@ -61,6 +61,7 @@ defmodule BookReviewApp.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:faker, "~> 0.17", only: [:dev, :test]},
+      {:cachex, "~> 3.3"},
       {:memcachex, "~> 0.5.2"}
     ]
   end

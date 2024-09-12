@@ -2,6 +2,21 @@ defmodule BookReviewApp.Books do
   import Ecto.Query, warn: false
   alias BookReviewApp.Repo
   alias BookReviewApp.Books.{Author, Book, Review}
+  alias BookReviewApp.Cache
+
+  def list_books do
+    case Cache.fetch("all_books") do
+      # Si no hay datos en caché, hacer la consulta a la base de datos y guardar los resultados
+      {:ok, nil} ->
+        books = Repo.all(Book)
+        Cache.put("all_books", books)
+        books
+
+      # Si hay datos en la caché, devolverlos directamente
+      {:ok, books} ->
+        books
+    end
+  end
 
   def list_authors_with_stats(params \\ %{}) do
     sort_by = Map.get(params, "sort", "author")
