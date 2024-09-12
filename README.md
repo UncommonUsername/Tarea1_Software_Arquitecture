@@ -113,7 +113,7 @@ docker-compose -f docker-compose.app-db-search.yml up --build
 ```bash
 docker-compose -f docker-compose.app-db-proxy.yml up --build
 ```
-and enter in http://app.localhost/
+and enter in http://localhost
 
 ### Aplicación + Base de datos + Proxy inverso + Caché + Motor de búsqueda
 ```bash
